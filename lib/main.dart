@@ -90,7 +90,9 @@ class _TaskState extends State<Task> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            nivel++;
+                            if (nivel < 10) {
+                              nivel++;
+                            }
                           });
                         },
                         child: const Icon(Icons.arrow_drop_up),
