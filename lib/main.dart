@@ -17,23 +17,21 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(
+            leading: Container(),
             title: Text('Tarefas'),
           ),
           body: ListView(
             children: [
-              Task('teste'),
-              Task('gfdgffg'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssssssssssssssssssssssss'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssss'),
-              Task('sssss'),
+              Task(
+                'teste',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+              ),
+              Task('ride',
+                  'https://tswbike.com/wp-content/uploads/2020/09/108034687_626160478000800_2490880540739582681_n-e1600200953343.jpg'),
+              Task('read',
+                  'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg'),
+              Task('meditation',
+                  'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg'),
             ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -43,8 +41,9 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatefulWidget {
   final String nome;
+  final String foto;
 
-  const Task(this.nome, {Key? key}) : super(key: key);
+  const Task(this.nome, this.foto, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
@@ -76,26 +75,79 @@ class _TaskState extends State<Task> {
                         color: Colors.black26,
                         width: 72,
                         height: 100,
-                      ),
-                      Container(
-                        width: 200,
-                        child: Text(
-                          widget.nome,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                        child: Image.network(
+                          widget.foto,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            if (nivel < 10) {
-                              nivel++;
-                            }
-                          });
-                        },
-                        child: const Icon(Icons.arrow_drop_up),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 200,
+                            child: Text(
+                              widget.nome,
+                              style: const TextStyle(
+                                fontSize: 24,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: Colors.blue,
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: Colors.blue,
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: Colors.blue,
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: Colors.blue[100],
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: Colors.blue[100],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: 52,
+                        width: 52,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              if (nivel < 10) {
+                                nivel++;
+                              }
+                            });
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              const Icon(Icons.arrow_drop_up),
+                              Text(
+                                'Up',
+                                style: TextStyle(fontSize: 12),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
