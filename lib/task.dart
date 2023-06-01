@@ -138,6 +138,7 @@ class _TaskState extends State<Task> {
                 ),
                 Difficulty(
                   dificultyLevel: widget.dificuldade,
+                  nivel: nivel,
                 ),
               ],
             ),
