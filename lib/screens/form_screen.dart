@@ -8,6 +8,10 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController difficultyController = TextEditingController();
+  TextEditingController imageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +28,17 @@ class _FormScreenState extends State<FormScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: FractionallySizedBox(
                     widthFactor: 0.9,
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      textAlign: TextAlign.center,
+                      controller: nameController,
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Nome',
                         fillColor: Colors.white70,
@@ -38,6 +46,69 @@ class _FormScreenState extends State<FormScreen> {
                       ),
                     ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.9,
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      controller: difficultyController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Difficulty',
+                        fillColor: Colors.white70,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.9,
+                    child: TextFormField(
+                      onChanged: (text) {
+                        setState(() {});
+                      },
+                      textAlign: TextAlign.center,
+                      controller: imageController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'image',
+                        fillColor: Colors.white70,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 72,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 2, color: Colors.blue),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      imageController.text,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Image.asset('assets/images/nophoto.png');
+                      },
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    print(nameController.text);
+                    print(int.parse(difficultyController.text));
+                    print(imageController.text);
+                  },
+                  child: const Text('Adiconar'),
                 ),
               ],
             ),
