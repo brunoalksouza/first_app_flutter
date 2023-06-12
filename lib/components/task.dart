@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'difficulty.dart';
 
+// ignore: must_be_immutable
 class Task extends StatefulWidget {
   final String nome;
   final String foto;
@@ -129,11 +130,11 @@ class _TaskState extends State<Task> {
                             widget.nivel++;
                           });
                         },
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            const Icon(Icons.arrow_drop_up),
+                            Icon(Icons.arrow_drop_up),
                             Text(
                               'Up',
                               style: TextStyle(fontSize: 12),
