@@ -14,6 +14,17 @@ class taskDao {
   static const String _difficulty = 'difficulty';
   static const String _image = 'image';
 
+  List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
+    print('convertendo to list: ');
+    final List<Task> tarefas = [];
+    for (Map<String, dynamic> linha in mapaDeTarefas) {
+      final Task tarefa = Task(linha[_name], linha[_image], linha[_difficulty]);
+      tarefas.add(tarefa);
+    }
+    print('mapaDeTarefas $tarefas');
+    return tarefas;
+  }
+
   save(Task tarefa) async {
     Future<List<Task>> findAll() async {
       print('Acessando o findAll');
@@ -22,18 +33,6 @@ class taskDao {
           await bancoDeDados.query(_tablename);
       print('Procurando no banco de dados... encontrado: $result');
       return toList(result);
-    }
-
-    List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
-      print('convertendo to list: ');
-      final List<Task> tarefas = [];
-      for (Map<String, dynamic> linha in mapaDeTarefas) {
-        final Task tarefa =
-            Task(linha[_name], linha[_image], linha[_difficulty]);
-        tarefas.add(tarefa);
-      }
-      print('mapaDeTarefas $tarefas');
-      return tarefas;
     }
 
     Future<List<Task>> find(String nomeDaTarefa) async {
