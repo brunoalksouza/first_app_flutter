@@ -5,6 +5,7 @@ This is a project that was developed using Dart and Flutter.
 <br>
 This app was made in the course from Alura. It's a simple project where you add tasks and change the difficulty as needed.
 <br>
+<br>
 Feel free to send questions, criticisms and suggestions, if you have any ideas to improve the code you are welcome!
 </p>
 
